@@ -39,7 +39,6 @@ int main(){
                     taskCounter++;
                     cout << "\nTask N." << i+1 << " ";
                     getline(cin,usrTasks[i]);
-                    cout << taskCounter;
                     break;   
                 }else if(taskCounter == 5) //If the taskCounter is full, no more tasks can be added until one task is deleted
                 {
@@ -50,6 +49,12 @@ int main(){
             pressAnyKey();
             break;
         case 2:
+            if(taskCounter == 0)
+            {
+                cout << "\nThere are no tasks to delete\n";
+                pressAnyKey();
+                break;
+            }
             getTasks(usrTasks,5);
             cout << "Write the number of the task you want to delete: ";
             cin >> deleteNum;
@@ -64,7 +69,7 @@ int main(){
                     taskCounter--;
                     cout << "\nTask Deleted\n";
                     break;
-                }else if(usrTasks[i].length() == 0 || deleteNum >5 || deleteNum <0)
+                }else if(usrTasks[i].length() == 0 || deleteNum > 5 || deleteNum < 0)
                 {
                     cout << "Invalid Option\n\n";
                     break;
@@ -79,14 +84,14 @@ int main(){
                     usrTasks[i+1] = "";
                 }
             }
-            
             pressAnyKey();
             break;
         case 3:
         /*If our taskCounter is equal to 0 there are no tasks to show, if it is bigger than 0 there are tasks to be shown*/
             if(taskCounter == 0)
             {
-                cout << "There are no task to show\n";
+                cout << "\nThere are no task to show\n";
+                pressAnyKey();
             }else{
             cout << "-----TASKS-----\n";
             getTasks(usrTasks,5);
