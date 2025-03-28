@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <conio.h>
+#include <string.h>
 
 using namespace std;
 
@@ -12,24 +13,51 @@ void getTasks(string array[], int size);
 
 int main(){
     string usrTasks[5];
-    int opt;
+    int opt,deleteNum,taskCounter;
 
     
     do{
         getMenu();
         cin >> opt;
+        cin.ignore();
         switch (opt)
         {
         case 1:
             for(int i=0;i<5;i++)
             {
-                cout << i+1 << ". ";
-                cin >> usrTasks[i];
+                if(usrTasks[i].size() == 0)
+                {
+                    taskCounter+1;
+                    cout << "\nTask N." << i+1 << " ";
+                    getline(cin,usrTasks[i]);
+                    break;   
+                }else if(usrTasks[i].size() > 0)
+                {
+                    
+                }
             }
             pressAnyKey();
             break;
         case 2:
-                getTasks(usrTasks,5);
+            getTasks(usrTasks,5);
+            cout << "Select a Task you want to delete: ";
+            cin >> deleteNum;
+            for(int i=0;i<5;i++)
+            {
+                if(i==deleteNum)
+                {
+                    usrTasks[deleteNum-1] = "";
+                }
+            }
+            
+
+            break;
+        case 3:
+            getTasks(usrTasks,5);
+            pressAnyKey();
+            break;
+        case 9:
+
             break;
         default:
             cout << "Invalid Option\n";
@@ -55,6 +83,6 @@ void getTasks(string array[], int size)
 {
     for(int i=0;i<size;i++)
     {
-        cout << "Task N." << i+1 << ": " << array[i];
+        cout << "Task N." << i+1 << ": " << array[i] << "\n";
     }
 }
